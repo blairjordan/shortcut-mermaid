@@ -6,7 +6,6 @@ Shortcut Mermaid generates PERT charts from Shortcut stories.
 **Install Dependencies**
 
 ```sh
-Copy code
 npm install
 ```
 
