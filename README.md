@@ -1,7 +1,7 @@
 # Shortcut Mermaid
 Shortcut Mermaid generates PERT charts from Shortcut stories.
 
-![Example Chart](https://github.com/blairjordan/shortcut-mermaid/raw/main/media/screenshot1.png)
+![Example Chart](https://github.com/blairjordan/shortcut-mermaid/raw/main/screenshots/screenshot1.png)
 
 # Setup
 
