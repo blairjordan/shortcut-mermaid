@@ -1,0 +1,24 @@
+{
+  "name": "shortcut-mermaid",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --watch src --ext ts --exec 'npx tsc && node dist/watch.js'",
+    "build": "npx tsc",
+    "start": "node dist/watch.js",
+    "generate:types": "swagger-typescript-api -p https://developer.shortcut.com/api/rest/v3/shortcut.swagger.json -o ./src/types --name api.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^20.14.9",
+    "prettier": "^3.3.2",
+    "swagger-typescript-api": "^13.0.12",
+    "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "axios": "^1.7.2",
+    "dotenv": "^16.4.5"
+  }
+}
