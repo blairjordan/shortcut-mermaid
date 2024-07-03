@@ -42,7 +42,7 @@ export const ShortcutApi = ({
       const queryParams = {
         query: "is:story",
         detail: "full",
-        page_size: 10,
+        page_size: 25,
         ...(next
           ? {
               ...Object.fromEntries(
