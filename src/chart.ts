@@ -1,4 +1,4 @@
-import { Story, WorkflowState } from "./types/api"
+import { Story, WorkflowState, TypedStoryLink } from "./types/api"
 
 export const generateChart = ({
   stories,
@@ -20,16 +20,16 @@ export const generateChart = ({
     )
     .join("\n    ")
 
-  const generateNodeLabel = (story: any) => {
-    const className = stateMap.get(story.workflow_state_id) || "default"
-    return `${story.id}["${story.name}"]:::${className}`
-  }
-
-  const nodes = stories.map(generateNodeLabel).join("\n    ")
+  const nodes = stories
+    .map((story: Story) => {
+      const className = stateMap.get(story.workflow_state_id) || "default"
+      return `${story.id}["${story.name}"]:::${className}`
+    })
+    .join("\n    ")
   const linkSet = new Set<string>()
 
   stories.forEach((story: Story) => {
-    story.story_links.forEach((link: any) => {
+    story.story_links.forEach((link: TypedStoryLink) => {
       const linkStr =
         link.verb === "blocks"
           ? `${link.subject_id} --> ${link.object_id}`
