@@ -1,12 +1,17 @@
 import { Story, WorkflowState, TypedStoryLink } from "./types/api"
 
+type GenerateChartOutput = {
+  mermaidChart: string
+  mermaidChartFullMd: string
+}
+
 export const generateChart = ({
   stories,
   states,
 }: {
   stories: Story[]
   states: WorkflowState[]
-}) => {
+}): GenerateChartOutput => {
   const stateMap = new Map<number, string>()
 
   states.forEach((state) => {
@@ -40,13 +45,21 @@ export const generateChart = ({
 
   const links = Array.from(linkSet).join("\n    ")
 
-  const mermaidChart = `\`\`\`mermaid
+  const mermaidChart = `
   flowchart LR
     ${classes}
     ${nodes}
     ${links}
+  `
+  const mermaidChartFullMd = `\`\`\`mermaid
+  %% start_pert
+    ${mermaidChart}
+  %% end_pert
   \`\`\`
 `
 
-  return mermaidChart
+  return {
+    mermaidChart,
+    mermaidChartFullMd,
+  }
 }

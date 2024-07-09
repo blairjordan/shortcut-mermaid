@@ -1,10 +1,11 @@
 import { ShortcutApi } from "./shortcut-api"
+import { Story } from "./types/api"
 
 export const fetchStories = async ({
   shortcutApi,
 }: {
   shortcutApi: ShortcutApi
-}) => {
+}): Promise<Story[] | undefined> => {
   let next: string | undefined = ""
   let aggregatedResults: any[] = []
 
