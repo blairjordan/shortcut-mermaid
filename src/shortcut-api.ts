@@ -1,4 +1,11 @@
-import { Api, ApiConfig, StorySearchResults, Workflow } from "./types/api"
+import {
+  Api,
+  ApiConfig,
+  Epic,
+  EpicSlim,
+  StorySearchResults,
+  Workflow,
+} from "./types/api"
 import dotenv from "dotenv"
 
 dotenv.config()
@@ -13,6 +20,14 @@ export interface ShortcutApi {
   baseUrl: string
   getStories: ({ next }: { next?: string }) => Promise<StorySearchResults>
   listWorkflows: () => Promise<Workflow[]>
+  listEpics: () => Promise<EpicSlim[]>
+  updateEpicDescription: ({
+    epicId,
+    description,
+  }: {
+    epicId: number
+    description: string
+  }) => Promise<Epic>
 }
 
 export const ShortcutApi = ({
@@ -66,6 +81,23 @@ export const ShortcutApi = ({
     },
     async listWorkflows(): Promise<Workflow[]> {
       return (await apiClient.api.listWorkflows()).data
+    },
+    async listEpics(): Promise<Epic[]> {
+      let epics: Epic[] = []
+      const epicSlims = (await apiClient.api.listEpics()).data
+      for (let epicSlim of epicSlims) {
+        epics.push((await apiClient.api.getEpic(epicSlim.id)).data)
+      }
+      return epics
+    },
+    async updateEpicDescription({
+      epicId,
+      description,
+    }: {
+      epicId: number
+      description: string
+    }): Promise<Epic> {
+      return (await apiClient.api.updateEpic(epicId, { description })).data
     },
   }
 }
