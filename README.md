@@ -35,9 +35,16 @@ SHORTCUT_API_TOKEN=<YOUR_API_KEY>
 CHART_FILE_PATH=./chart.md
 WORKFLOW_ID=<WORKFLOW_ID>
 WATCH_INTERVAL=60000
+WRITE_CHART_MARKDOWN=true
+UPDATE_EPIC_DESCRIPTION=true
 ```
 
 For more information on how to get the `SHORTCUT_API_TOKEN` and `WORKFLOW_ID`, please refer to the [Shortcut API documentation](https://shortcut.com/api).
+
+To write the chart to a file, set `WRITE_CHART_MARKDOWN=true`. The default folder path is `./`.
+
+To update the epic description to include the chart, set `UPDATE_EPIC_DESCRIPTION=true`.
+If a PERT chart already exists in the description, it will be replaced.
 
 **Development:**
 
